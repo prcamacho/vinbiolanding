@@ -24,20 +24,20 @@
       <p class="bio">La belleza de lo simple,<br />la perfecci&oacute;n en los detalles...</p>
 
       <div class="socials" aria-label="Redes sociales">
-        <a href="https://www.instagram.com/vin_salta/" aria-label="Instagram">
+        <a href="https://www.instagram.com/vin_salta/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="4" y="4" width="16" height="16" rx="5" />
             <circle cx="12" cy="12" r="3.6" />
             <circle cx="16.7" cy="7.3" r="1" />
           </svg>
         </a>
-        <a href="https://www.tiktok.com/@vinsalta" aria-label="TikTok">
+        <a href="https://www.tiktok.com/@vinsalta" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M14 4v10.2a4.1 4.1 0 1 1-4.1-4.1" />
             <path d="M14 4c.5 3.1 2.4 5 5.5 5.3" />
           </svg>
         </a>
-        <a href="https://www.facebook.com/share/18cNyJHC3L/?mibextid=wwXIfr" aria-label="Facebook">
+        <a href="https://www.facebook.com/share/18cNyJHC3L/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M14 8h2V4h-2.4C10.8 4 9 5.8 9 8.6V11H6v4h3v5h4v-5h3l1-4h-4V8.8c0-.5.4-.8 1-.8Z" />
           </svg>
@@ -46,7 +46,7 @@
     </section>
 
     <section class="links" id="links" aria-label="Enlaces principales">
-      <a href="https://t.me/vin_saltena" class="link-card">
+      <a href="https://t.me/vin_saltena" class="link-card" target="_blank" rel="noopener noreferrer" data-age-gate="Telegram Gratuito">
         <img src="img/profile.png" alt="" loading="lazy" decoding="async" />
         <span>Telegram Gratuito <span aria-hidden="true">&#10084;&#65039;</span></span>
         <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
@@ -56,7 +56,7 @@
         </svg>
       </a>
 
-      <a href="https://cafecito.app/vin_salta" class="link-card">
+      <a href="https://cafecito.app/vin_salta" class="link-card" target="_blank" rel="noopener noreferrer" data-age-gate="Cafecito">
         <img src="img/slide7.png" alt="" loading="lazy" decoding="async" />
         <span>Cafecito &#9749; Expl&iacute;cito</span>
         <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
@@ -66,7 +66,7 @@
         </svg>
       </a>
 
-      <a href="https://www.tiktok.com/@vinsalta" class="link-card">
+      <a href="https://www.tiktok.com/@vinsalta" class="link-card" target="_blank" rel="noopener noreferrer">
         <img src="img/slide1.png" alt="" loading="lazy" decoding="async" />
         <span>TikTok</span>
         <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
@@ -76,7 +76,7 @@
         </svg>
       </a>
 
-      <a href="https://www.facebook.com/share/18cNyJHC3L/?mibextid=wwXIfr" class="link-card">
+      <a href="https://www.facebook.com/share/18cNyJHC3L/?mibextid=wwXIfr" class="link-card" target="_blank" rel="noopener noreferrer">
         <img src="img/slide12.png" alt="" loading="lazy" decoding="async" />
         <span>Facebook</span>
         <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
@@ -86,7 +86,7 @@
         </svg>
       </a>
 
-      <a href="https://vinsalta.com/" class="link-card">
+      <a href="https://vinsalta.com/" class="link-card" target="_blank" rel="noopener noreferrer" data-age-gate="Reservas">
         <img src="img/slide15.png" alt="" loading="lazy" decoding="async" />
         <span>Reservas</span>
         <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
@@ -96,7 +96,7 @@
         </svg>
       </a>
 
-      <a href="https://twitter.com/vin_salta" class="link-card">
+      <a href="https://twitter.com/vin_salta" class="link-card" target="_blank" rel="noopener noreferrer">
         <img src="img/slide16.png" alt="" loading="lazy" decoding="async" />
         <span>X</span>
         <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
@@ -107,5 +107,72 @@
       </a>
     </section>
   </main>
+
+  <div class="age-gate" id="ageGate" hidden>
+    <div class="age-gate__card" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle" aria-describedby="ageGateText">
+      <p class="age-gate__eyebrow">Contenido para adultos</p>
+      <h2 id="ageGateTitle">&iquest;Sos mayor de 18 a&ntilde;os?</h2>
+      <p id="ageGateText">Para continuar a este enlace, confirm&aacute; que ten&eacute;s 18 a&ntilde;os o m&aacute;s.</p>
+      <div class="age-gate__actions">
+        <button class="age-gate__button age-gate__button--primary" type="button" data-age-confirm>S&iacute;, continuar</button>
+        <button class="age-gate__button" type="button" data-age-cancel>No, volver</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ageGate = document.querySelector("#ageGate");
+    const ageConfirm = document.querySelector("[data-age-confirm]");
+    const ageCancel = document.querySelector("[data-age-cancel]");
+    const ageTitle = document.querySelector("#ageGateTitle");
+    let pendingUrl = "";
+    let lastFocusedLink = null;
+
+    function openAgeGate(link) {
+      pendingUrl = link.href;
+      lastFocusedLink = link;
+      ageTitle.textContent = "\u00bfSos mayor de 18 a\u00f1os?";
+      ageGate.hidden = false;
+      document.body.classList.add("is-gate-open");
+      ageConfirm.focus();
+    }
+
+    function closeAgeGate() {
+      pendingUrl = "";
+      ageGate.hidden = true;
+      document.body.classList.remove("is-gate-open");
+      if (lastFocusedLink) {
+        lastFocusedLink.focus();
+      }
+    }
+
+    document.querySelectorAll("[data-age-gate]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        openAgeGate(link);
+      });
+    });
+
+    ageConfirm.addEventListener("click", () => {
+      if (pendingUrl) {
+        window.open(pendingUrl, "_blank", "noopener,noreferrer");
+      }
+      closeAgeGate();
+    });
+
+    ageCancel.addEventListener("click", closeAgeGate);
+
+    ageGate.addEventListener("click", (event) => {
+      if (event.target === ageGate) {
+        closeAgeGate();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !ageGate.hidden) {
+        closeAgeGate();
+      }
+    });
+  </script>
 </body>
 </html>
