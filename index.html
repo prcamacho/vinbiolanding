@@ -3,84 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vin Salta</title>
-
+  <meta name="description" content="Links oficiales de Vin_Salta." />
+  <meta name="theme-color" content="#b8aa91" />
+  <title>Vin_Salta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="preload" href="img/cover.png" as="image" />
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Iconos -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
 </head>
 <body>
+  <main class="landing" id="top">
+    <div class="hero" aria-hidden="true">
+      <img src="img/cover.png" alt="" />
+    </div>
 
-  <main class="landing">
+    <nav class="top-actions" aria-label="Accesos rapidos">
+      <a class="icon-button" href="#links" aria-label="Ver enlaces">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3v4" />
+          <path d="M12 17v4" />
+          <path d="M3 12h4" />
+          <path d="M17 12h4" />
+          <path d="m6.7 6.7 2.8 2.8" />
+          <path d="m14.5 14.5 2.8 2.8" />
+          <path d="m17.3 6.7-2.8 2.8" />
+          <path d="m9.5 14.5-2.8 2.8" />
+        </svg>
+      </a>
+      <a class="icon-button" href="#top" aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m3 10 9-7 9 7" />
+          <path d="M5 9v11h14V9" />
+          <path d="M9 20v-6h6v6" />
+        </svg>
+      </a>
+    </nav>
 
-    <section class="profile">
-      <img src="img/perfil.jpg" alt="Vin Salta" class="profile-img" />
+    <section class="profile" aria-labelledby="profile-title">
+      <h1 id="profile-title">Vin_Salta</h1>
+      <p class="location">Salta - Argentina <span aria-hidden="true">&#127799; &#127807;</span></p>
+      <p class="bio">La belleza de lo simple,<br />la perfecci&oacute;n en los detalles...</p>
 
-      <h1>Vin_Salta</h1>
-
-      <p class="location">
-        Salta - Argentina 🌻 🌿
-      </p>
-
-      <p class="bio">
-        La belleza de lo simple, la<br />
-        perfección en los detalles...
-      </p>
-
-      <div class="socials">
-        <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
-          <i class="fa-brands fa-instagram"></i>
+      <div class="socials" aria-label="Redes sociales">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="5" />
+            <circle cx="12" cy="12" r="3.6" />
+            <circle cx="16.7" cy="7.3" r="1" />
+          </svg>
         </a>
-
-        <a href="https://tiktok.com/" target="_blank" aria-label="TikTok">
-          <i class="fa-brands fa-tiktok"></i>
+        <a href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 4v10.2a4.1 4.1 0 1 1-4.1-4.1" />
+            <path d="M14 4c.5 3.1 2.4 5 5.5 5.3" />
+          </svg>
         </a>
-
-        <a href="https://facebook.com/" target="_blank" aria-label="Facebook">
-          <i class="fa-brands fa-facebook"></i>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 8h2V4h-2.4C10.8 4 9 5.8 9 8.6V11H6v4h3v5h4v-5h3l1-4h-4V8.8c0-.5.4-.8 1-.8Z" />
+          </svg>
         </a>
       </div>
     </section>
 
-    <section class="links">
-
+    <section class="links" id="links" aria-label="Enlaces principales">
       <a href="#" class="link-card">
-        <img src="img/telegram.jpg" alt="" />
-        <span>Telegram Gratuito 💖</span>
-        <i class="fa-solid fa-ellipsis-vertical menu-icon"></i>
+        <img src="img/profile.png" alt="" loading="lazy" decoding="async" />
+        <span>Telegram Gratuito <span aria-hidden="true">&#10084;&#65039;</span></span>
+        <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="5" r="1.5" />
+          <circle cx="12" cy="12" r="1.5" />
+          <circle cx="12" cy="19" r="1.5" />
+        </svg>
       </a>
 
       <a href="#" class="link-card">
-        <img src="img/cafe.jpg" alt="" />
-        <span>Cafecito ☕ Explícito</span>
-        <i class="fa-solid fa-ellipsis-vertical menu-icon"></i>
+        <img src="img/slide7.png" alt="" loading="lazy" decoding="async" />
+        <span>Cafecito &#9749; Expl&iacute;cito</span>
+        <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="5" r="1.5" />
+          <circle cx="12" cy="12" r="1.5" />
+          <circle cx="12" cy="19" r="1.5" />
+        </svg>
       </a>
 
       <a href="#" class="link-card">
-        <img src="img/tiktok.jpg" alt="" />
+        <img src="img/slide1.png" alt="" loading="lazy" decoding="async" />
         <span>TikTok</span>
-        <i class="fa-solid fa-ellipsis-vertical menu-icon"></i>
+        <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="5" r="1.5" />
+          <circle cx="12" cy="12" r="1.5" />
+          <circle cx="12" cy="19" r="1.5" />
+        </svg>
       </a>
 
       <a href="#" class="link-card">
-        <img src="img/facebook.jpg" alt="" />
+        <img src="img/slide12.png" alt="" loading="lazy" decoding="async" />
         <span>Facebook</span>
-        <i class="fa-solid fa-ellipsis-vertical menu-icon"></i>
+        <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="5" r="1.5" />
+          <circle cx="12" cy="12" r="1.5" />
+          <circle cx="12" cy="19" r="1.5" />
+        </svg>
       </a>
 
       <a href="#" class="link-card">
-        <img src="img/tarifas.jpg" alt="" />
+        <img src="img/slide15.png" alt="" loading="lazy" decoding="async" />
         <span>Tarifas</span>
-        <i class="fa-solid fa-ellipsis-vertical menu-icon"></i>
+        <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="5" r="1.5" />
+          <circle cx="12" cy="12" r="1.5" />
+          <circle cx="12" cy="19" r="1.5" />
+        </svg>
       </a>
 
+      <a href="#" class="link-card">
+        <img src="img/slide16.png" alt="" loading="lazy" decoding="async" />
+        <span>X</span>
+        <svg class="dots" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="5" r="1.5" />
+          <circle cx="12" cy="12" r="1.5" />
+          <circle cx="12" cy="19" r="1.5" />
+        </svg>
+      </a>
     </section>
-
   </main>
-
 </body>
 </html>
