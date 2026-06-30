@@ -8,6 +8,10 @@
   --rose: #ffe8f6;
   --ink: #38263e;
   --white: #fffdf9;
+  --link-height: 44px;
+  --link-thumb-size: 33px;
+  --link-inline-icon-size: 14px;
+  --link-gap: 8px;
 }
 
 * {
@@ -42,7 +46,7 @@ a {
   min-height: 100vh;
   min-height: 100svh;
   margin: 0 auto;
-  overflow: hidden;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 78% 22%, rgba(255, 210, 251, 0.16), transparent 30%),
     linear-gradient(180deg, rgba(255, 244, 248, 0.18), transparent 34%),
@@ -208,7 +212,7 @@ a {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--link-gap);
   margin-top: 14px;
   padding: 0 12px 18px;
 }
@@ -217,7 +221,7 @@ a {
   display: grid;
   grid-template-columns: 34px minmax(0, 1fr) 22px;
   align-items: center;
-  min-height: 40px;
+  min-height: var(--link-height);
   padding: 4px 10px 4px 4px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
@@ -240,22 +244,43 @@ a {
   transform: translateY(1px);
 }
 
-.link-card img {
+.link-card > img {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: var(--link-thumb-size);
+  height: var(--link-thumb-size);
   border: 2px solid rgba(255, 247, 255, 0.78);
   border-radius: 50%;
   object-fit: cover;
 }
 
-.link-card span {
+.link-card > span {
   min-width: 0;
   padding: 0 8px 0 2px;
   overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.link-label--with-icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.link-label--with-icons span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link-inline-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: var(--link-inline-icon-size);
+  height: var(--link-inline-icon-size);
+  filter: drop-shadow(0 1px 2px rgba(56, 38, 62, 0.16));
 }
 
 .dots {
@@ -355,6 +380,13 @@ a {
 }
 
 @media (max-width: 360px) {
+  :root {
+    --link-height: 38px;
+    --link-thumb-size: 29px;
+    --link-inline-icon-size: 12px;
+    --link-gap: 7px;
+  }
+
   .landing {
     padding-right: 8px;
     padding-left: 8px;
@@ -380,7 +412,6 @@ a {
   }
 
   .links {
-    gap: 7px;
     margin-top: 12px;
     padding-right: 7px;
     padding-left: 7px;
@@ -388,13 +419,7 @@ a {
 
   .link-card {
     grid-template-columns: 30px minmax(0, 1fr) 18px;
-    min-height: 34px;
     font-size: 10.5px;
-  }
-
-  .link-card img {
-    width: 26px;
-    height: 26px;
   }
 }
 
