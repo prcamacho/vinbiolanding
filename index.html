@@ -19,6 +19,11 @@
   </head>
   <body>
     <main class="landing" id="top">
+      <div class="external-browser-tip" aria-hidden="true">
+        <span class="tip-dots">•••</span>
+        <span>Toc&aacute; para abrir en navegador externo</span>
+      </div>
+
       <div class="hero" aria-hidden="true">
         <img src="img/cover.png" alt="" />
       </div>
@@ -142,6 +147,7 @@
           class="link-card"
           target="_blank"
           rel="noopener noreferrer"
+          data-age-gate="TikTok"
         >
           <img src="img/slide1.png" alt="" loading="lazy" decoding="async" />
           <span>TikTok</span>
@@ -157,6 +163,7 @@
           class="link-card"
           target="_blank"
           rel="noopener noreferrer"
+          data-age-gate="Facebook"
         >
           <img src="img/slide12.png" alt="" loading="lazy" decoding="async" />
           <span>Facebook</span>
@@ -188,6 +195,7 @@
           class="link-card"
           target="_blank"
           rel="noopener noreferrer"
+          data-age-gate="X"
         >
           <img src="img/slide16.png" alt="" loading="lazy" decoding="async" />
           <span>X</span>
@@ -208,6 +216,14 @@
         aria-labelledby="ageGateTitle"
         aria-describedby="ageGateText"
       >
+        <div class="age-gate__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="m3 3 18 18" />
+            <path d="M10.6 10.8a2.2 2.2 0 0 0 2.6 2.6" />
+            <path d="M9.9 5.3A10.2 10.2 0 0 1 12 5c4.8 0 8.3 4.1 9.6 6.1a1.7 1.7 0 0 1 0 1.8 17 17 0 0 1-2.9 3.4" />
+            <path d="M6.7 6.7A16.3 16.3 0 0 0 2.4 11a1.7 1.7 0 0 0 0 1.9C3.7 14.9 7.2 19 12 19c1.5 0 2.8-.4 4-1" />
+          </svg>
+        </div>
         <p class="age-gate__eyebrow">Contenido para adultos</p>
         <h2 id="ageGateTitle">&iquest;Sos mayor de 18 a&ntilde;os?</h2>
         <p id="ageGateText">
@@ -226,6 +242,9 @@
             No, volver
           </button>
         </div>
+        <button class="age-gate__copy" type="button" data-copy-link hidden>
+          Copiar enlace
+        </button>
       </div>
     </div>
 
@@ -234,16 +253,60 @@
       const ageConfirm = document.querySelector("[data-age-confirm]");
       const ageCancel = document.querySelector("[data-age-cancel]");
       const ageTitle = document.querySelector("#ageGateTitle");
+      const ageText = document.querySelector("#ageGateText");
+      const ageEyebrow = document.querySelector(".age-gate__eyebrow");
+      const ageCopy = document.querySelector("[data-copy-link]");
+      const externalBrowserPattern = /Instagram|FBAN|FBAV|FB_IAB|FB4A|FBIOS/i;
+      const isInAppBrowser = externalBrowserPattern.test(navigator.userAgent);
       let pendingUrl = "";
       let lastFocusedLink = null;
+
+      if (isInAppBrowser) {
+        document.body.classList.add("is-in-app-browser");
+      }
+
+      function getLinkName(link) {
+        return (
+          link.dataset.ageGate ||
+          link.getAttribute("aria-label") ||
+          link.textContent.trim() ||
+          "este enlace"
+        );
+      }
 
       function openAgeGate(link) {
         pendingUrl = link.href;
         lastFocusedLink = link;
-        ageTitle.textContent = "\u00bfSos mayor de 18 a\u00f1os?";
+        const linkName = getLinkName(link);
+
+        if (isInAppBrowser) {
+          ageEyebrow.textContent = "18+ Content Warning";
+          ageTitle.textContent = "Abrilo en tu navegador externo";
+          ageText.innerHTML =
+            "Este enlace puede contener contenido adulto.<br /><br /><strong>Toc\u00e1 los tres puntitos de arriba o abajo a la derecha y eleg\u00ed</strong><br />Abrir en navegador externo.";
+          ageConfirm.hidden = true;
+          ageCancel.textContent = "Entendido";
+          ageCopy.hidden = false;
+        } else {
+          ageEyebrow.textContent = "Contenido para adultos";
+          ageTitle.textContent = "\u00bfSos mayor de 18 a\u00f1os?";
+          ageText.textContent =
+            "Para continuar a " +
+            linkName +
+            ", confirm\u00e1 que ten\u00e9s 18 a\u00f1os o m\u00e1s.";
+          ageConfirm.hidden = false;
+          ageCancel.textContent = "No, volver";
+          ageCopy.hidden = true;
+        }
+
         ageGate.hidden = false;
         document.body.classList.add("is-gate-open");
-        ageConfirm.focus();
+        ageCopy.textContent = "Copiar enlace";
+        if (ageConfirm.hidden) {
+          ageCancel.focus();
+        } else {
+          ageConfirm.focus();
+        }
       }
 
       function closeAgeGate() {
@@ -255,7 +318,7 @@
         }
       }
 
-      document.querySelectorAll("[data-age-gate]").forEach((link) => {
+      document.querySelectorAll('a[target="_blank"]').forEach((link) => {
         link.addEventListener("click", (event) => {
           event.preventDefault();
           openAgeGate(link);
@@ -270,6 +333,19 @@
       });
 
       ageCancel.addEventListener("click", closeAgeGate);
+
+      ageCopy.addEventListener("click", async () => {
+        if (!pendingUrl) {
+          return;
+        }
+
+        try {
+          await navigator.clipboard.writeText(pendingUrl);
+          ageCopy.textContent = "Enlace copiado";
+        } catch (error) {
+          ageCopy.textContent = "Copia desde la barra superior";
+        }
+      });
 
       ageGate.addEventListener("click", (event) => {
         if (event.target === ageGate) {
